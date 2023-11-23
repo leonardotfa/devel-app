@@ -8,10 +8,10 @@ new_ver=$1
 echo "new version: $new_ver"
 
 # Simulate release of the new docker images
-docker tag nginx:1.23.3 leonardohtfa/nginx:$new_ver
+docker tag nginx:1.23.3 leonardotfa/nginx:$new_ver
 
 # Push new version to dockerhub
-docker push leonardohtfa/nginx:$new_ver
+docker push leonardotfa/nginx:$new_ver
 
 # Create temporary folder
 tmp_dir=$(mktemp -d)
@@ -21,7 +21,7 @@ echo $tmp_dir
 git clone git@github.com:leonardotfa/devel-app.git $tmp_dir
 
 # Update image tag
-sed -i '' -e "s/leonardohtfa\/nginx:.*/leonardohtfa\/nginx:$new_ver/g" $tmp_dir/my-app/1-deployment.yaml
+sed -i '' -e "s/leonardotfa\/nginx:.*/leonardotfa\/nginx:$new_ver/g" $tmp_dir/my-app/1-deployment.yaml
 
 # Commit and push
 cd $tmp_dir
